@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace SkalProj_Datastrukturer_Minne
 {
@@ -60,6 +63,7 @@ namespace SkalProj_Datastrukturer_Minne
         /// <summary>
         /// Examines the datastructure List
         /// </summary>
+        
         static void ExamineList()
         {
             /*
@@ -72,12 +76,55 @@ namespace SkalProj_Datastrukturer_Minne
              * Below you can see some inspirational code to begin working.
             */
 
-            //List<string> theList = new List<string>();
-            //string input = Console.ReadLine();
-            //char nav = input[0];
-            //string value = input.substring(1);
+            Console.Clear();
+            bool exit = true;
+            List<string> theList = new List<string>();
+            do
+            {
+                
+                Console.WriteLine(
+                    "input either +''something'' or -''something'' " +
+                    "\nto add and remove from the list" +
+                    "\ninput p to print the list" +
+                    "\ninput 0 to exit this submenu");
+                string input = Console.ReadLine();
+                char nav = input[0];
 
-            //switch(nav){...}
+                string value = input.Substring(1);
+                exit = true;
+                switch (nav)
+                {
+                    case '+':
+                        Console.Clear();
+                        theList.Add(value);
+                        Console.WriteLine($"{value} has been added to the list");
+                        break;
+
+                    case '-':
+                        Console.Clear();
+                        theList.Remove(value);
+                        Console.WriteLine($"{value} has been removed from the list");
+                        break;
+
+                    case 'p':
+                        Console.Clear();
+                        foreach (var item in theList)
+                        {
+                            Console.WriteLine(item);
+                        }
+                        break;
+
+                    case '0':
+                        Console.Clear();
+                        exit = false;
+                        break;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine("Invalid input, please use following options:");
+                        break;
+
+                }
+            } while (exit == true);
         }
 
         /// <summary>
@@ -85,11 +132,73 @@ namespace SkalProj_Datastrukturer_Minne
         /// </summary>
         static void ExamineQueue()
         {
+
+
             /*
              * Loop this method untill the user inputs something to exit to main menue.
              * Create a switch with cases to enqueue items or dequeue items
              * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
+            Console.Clear();
+            bool exit = true;
+            Queue<string> theQueue = new Queue<string>();
+            do
+            {
+
+                Console.WriteLine(
+                    "input either +''something'' or - " +
+                    "\nto add and remove from the Queue" +
+                    "\ninput p to print the list" +
+                    "\ninput s to simulate a full queue entry" +
+                    "\ninput 0 to exit this submenu");
+                string input = Console.ReadLine();
+                char nav = input[0];
+
+                string value = input.Substring(1);
+                exit = true;
+                switch (nav)
+                {
+                    case '+':
+                        Console.Clear();
+                        theQueue.Enqueue(value);
+                        Console.WriteLine($"{value} has been added to the Queue");
+                        break;
+
+                    case '-':
+                        Console.Clear();                        
+                        Console.WriteLine($"{theQueue.Peek()} has been removed from the Queue");
+                        theQueue.Dequeue();
+                        
+                        break;
+                    case 's':
+                        Console.Clear();
+                        theQueue.Enqueue("Josef");
+                        theQueue.Enqueue("Lisa");
+                        theQueue.Enqueue("Harald");
+                        theQueue.Enqueue("Per");
+                        theQueue.Enqueue("Mona");
+                        theQueue.Enqueue("Rickard");
+                        break;
+
+                    case 'p':
+                        Console.Clear();
+                        foreach (var item in theQueue)
+                        {
+                            Console.WriteLine(item);
+                        }
+                        break;
+
+                    case '0':
+                        Console.Clear();
+                        exit = false;
+                        break;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine("Invalid input, please use following options:");
+                        break;
+
+                }
+            } while (exit == true);
         }
 
         /// <summary>
@@ -102,6 +211,80 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to push or pop items
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
+            Console.Clear();
+            bool exit = true;
+            Stack<string> theStack = new Stack<string>();
+            do
+            {
+
+                Console.WriteLine(
+                    "input either +''something'' or - " +
+                    "\nto add and remove from the Stack" +
+                    "\ninput R to reverse ABC string" +
+                    "\ninput p to print the Stack" +
+                    "\ninput 0 to exit this submenu");
+                string input = Console.ReadLine();
+                char nav = input[0];
+
+                string value = input.Substring(1);
+                exit = true;
+                switch (nav)
+                {
+                    case '+':
+                        Console.Clear();
+                        theStack.Push(value);
+                        Console.WriteLine($"{value} has been added to the Stack");
+                        break;
+
+                    case '-':
+                        Console.Clear();
+                        Console.WriteLine($"{theStack.Peek()} has been removed from the Stack");
+                        theStack.Pop();
+
+                        break;
+                    
+
+                    case 'p':
+
+                        Console.Clear();
+                        foreach (var item in theStack)
+                        {
+                            Console.WriteLine(item);
+                        }
+                        break;
+                    case 'R':
+
+                        Console.Clear();
+                        var textToReverse = "ABC";
+                        var stack = new Stack<Char>();
+                        foreach (var c in textToReverse)
+                        {
+                            stack.Push(c);
+                           
+                        }
+                        var Reversedtext = new StringBuilder();
+                        for (int i = 0; 0 < stack.Count; stack.Pop())
+                        {                            
+                            Reversedtext.Append(stack.Peek());                            
+                        }
+                        Console.WriteLine(Reversedtext);
+                        //Till Demitri, Fick äntligen till den.
+                        
+
+
+                        break;
+
+                    case '0':
+                        Console.Clear();
+                        exit = false;
+                        break;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine("Invalid input, please use following options:");
+                        break;
+                        
+                }
+            } while (exit == true);
         }
 
         static void CheckParanthesis()
